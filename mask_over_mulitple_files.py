@@ -146,18 +146,18 @@
   #calculate for fluxes of each star
   total_flux=[]
   total=0.
-  numbers1=[0,-1,-2,-3,-4,-5,-6,-7,1,2,3,4,5,6,7]
-  numbers2=[0,-1,-2,-3,-4,-5,-6,-7,1,2,3,4,5,6,7]
+
+
   
   
   
   
   for i in range(len(radius)):		
   	if radius[i] > 0.:	
-  		for n1 in numbers1:
-  			for n2 in numbers2:
-  				if dist(x[i],y[i],x[i]+n1,y[i]+n2) <= radius[i]:
-  					total+=dataset[x[i]+n1,y[i]+n2]
+  		for x_box in [x[i]-radius[i]:x[i]+radius[i]+1]:
+  			for y_box in [y[i]-radius[i]:y[i]+radius[i]+1]:
+  				if dist(x[i],y[i],x_box,y_box) <= radius[i]:
+  					total+=dataset[x_box,y_box]
   	total_flux.append(total)
   	total=0.
   total_flux=[j for j in total_flux if j != 0]
